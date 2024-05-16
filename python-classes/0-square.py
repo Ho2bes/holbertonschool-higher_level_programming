@@ -3,4 +3,3 @@
 class Square:
     """ simple class of square"""
     pass
-
