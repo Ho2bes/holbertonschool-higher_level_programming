@@ -1,4 +1,4 @@
 #!/usr/bin/python3
-class square:
+class Square:
     """ simple class of square"""
     def __init__ ():
