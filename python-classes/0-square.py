@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-""" contain python code"""
+"""contain python code"""
+
 
 class Square:
-    """ simple class of square"""
+    """contain a simple class of square"""
     pass
