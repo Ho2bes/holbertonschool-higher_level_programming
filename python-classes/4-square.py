@@ -1,28 +1,28 @@
 #!/usr/bin/python3
-"""contain python code"""
+"""contain class Square."""
 
 
 class Square:
-    """contain a simple class of square"""
+    """Class of a square."""
 
     def __init__(self, size=0):
         """Initialize a square with option size"""
-        self.__size = size
-
-    def area(self):
-        """calculate the area of a square"""
-        return self.__size ** 2
+        self.size = size
 
     @property
     def size(self):
-        """get a size of a square"""
-        return self.__size
+        """get a size of square"""
+        return self._size
 
     @size.setter
     def size(self, value):
-        """define size of square with check"""
-        if not isinstance(size, int):
+        """Define size of square with check"""
+        if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        if size < 0:
+        if value < 0:
             raise ValueError("size must be >= 0")
-        self.__size = size
+        self._size = value
+
+    def area(self):
+        """Calculate and return the area of square."""
+        return self._size ** 2
