@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""contain python code"""
+"""Contain python code"""
+
 
 class Rectangle:
-    """contain a simple class of rectangle"""
+    """Contain a simple class of rectangle"""
 
     def __init__(self, width=0, height=0):
         if not isinstance(width, int):
