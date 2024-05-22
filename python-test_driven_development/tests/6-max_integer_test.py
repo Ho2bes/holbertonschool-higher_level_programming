@@ -28,6 +28,3 @@ class TestMaxInteger(unittest.TestCase):
         # Test with a list containing mixed types
         with self.assertRaises(TypeError):
             max_integer([1, '2', 3, '4'])
-
-if __name__ == '__main__':
-    unittest.main()
