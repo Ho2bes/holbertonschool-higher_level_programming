@@ -1,0 +1,24 @@
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+ def area(self):
+"""Calculate the area.
+>>> bg = BaseGeometry()
+>>> bg.area()
+Traceback (most recent call last):
+...
+Exception: area() is not implemented
+"""
+raise Exception("area() is not implemented")
+
+def integer_validator(self, name, value):
+"""Validate an integer value.
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("test", 10)
+>>> bg.integer_validator("test", "string")
+Traceback (most recent call last):
+...
+TypeError: test must be an integer
+>>> bg.integer_validator("test", 0)
+Traceback (most recent call last):
+...
+ValueError: test must be greater than 0
