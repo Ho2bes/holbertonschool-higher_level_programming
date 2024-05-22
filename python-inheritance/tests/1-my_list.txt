@@ -1,0 +1,17 @@
+>>> MyList = __import__('1-my_list').MyList
+
+>>> ml = MyList([3, 1, 2])
+>>> ml.print_sorted()
+[1, 2, 3]
+
+>>> ml = MyList([5, 4, 6])
+>>> ml.print_sorted()
+[4, 5, 6]
+
+>>> ml = MyList([])
+>>> ml.print_sorted()
+[]
+
+>>> ml = MyList(['b', 'c', 'a'])
+>>> ml.print_sorted()
+['a', 'b', 'c']
