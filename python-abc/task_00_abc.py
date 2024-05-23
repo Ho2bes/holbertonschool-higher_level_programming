@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """create abstract class and his subclass"""
 
+
 from abc import ABC, abstractmethod
 
 class Animal(ABC):
