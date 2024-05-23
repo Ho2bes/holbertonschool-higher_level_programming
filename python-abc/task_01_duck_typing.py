@@ -2,13 +2,14 @@
 """create abstract class and his subclass"""
 
 import math
-
 from abc import ABC, abstractmethod
 
 class Shape(ABC):
     @abstractmethod
     def area(self):
         pass
+
+    @abstractmethod
     def perimeter(self):
         pass
 
@@ -17,7 +18,7 @@ class Circle(Shape):
         self.radius = radius
 
     def area(self):
-            return math.pi * self.radius ** 2
+        return math.pi * self.radius ** 2
 
     def perimeter(self):
         return 2 * math.pi * self.radius
@@ -34,8 +35,11 @@ class Rectangle(Shape):
         return (self.width + self.height) * 2
 
 def shape_info(shape):
-    area = shape.area()
-    perimeter = shape.perimeter()
-    print("Area:", area)
-    print("Perimeter:", perimeter)
+    if isinstance(shape, Shape):
+        area = shape.area()
+        perimeter = shape.perimeter()
+        print("Area:", area)
+        print("Perimeter:", perimeter)
+    else:
+        print("Error: Object is not a valid shape.")
 
