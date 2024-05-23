@@ -42,4 +42,3 @@ def shape_info(shape):
         print("Perimeter:", perimeter)
     else:
         print("Error: Object is not a valid shape.")
-
