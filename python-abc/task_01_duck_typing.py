@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """create abstract class and his subclass"""
 
-import math
 from abc import ABC, abstractmethod
+import math
 
 class Shape(ABC):
     @abstractmethod
@@ -21,7 +21,10 @@ class Circle(Shape):
         return math.pi * self.radius ** 2
 
     def perimeter(self):
-        return 2 * math.pi * self.radius
+        if self.radius >= 0:
+            return 2 * math.pi * self.radius
+        else:
+            return "Invalid radius. Cannot calculate perimeter for negative radius."
 
 class Rectangle(Shape):
     def __init__(self, width, height):
@@ -32,10 +35,8 @@ class Rectangle(Shape):
         return self.width * self.height
 
     def perimeter(self):
-        return (self.width + self.height) * 2
+        return 2 * (self.width + self.height)
 
 def shape_info(shape):
-    area = shape.area()
-    perimeter = shape.perimeter()
-    print("Area:", area)
-    print("Perimeter:", perimeter)
+    print("Area: {}".format(shape.area()))
+    print("Perimeter: {}".format(shape.perimeter()))
