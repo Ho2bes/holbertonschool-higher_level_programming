@@ -24,7 +24,7 @@ class Circle(Shape):
         if self.radius >= 0:
             return 2 * math.pi * self.radius
         else:
-            return "Invalid radius, perimeter can be negative."
+            return ("Error: Object is not a valid shape.")
 
 class Rectangle(Shape):
     def __init__(self, width, height):
