@@ -21,10 +21,7 @@ class Circle(Shape):
         return math.pi * self.radius ** 2
 
     def perimeter(self):
-        if self.radius >= 0:
-            return 2 * math.pi * self.radius
-        else:
-            return "Invalid radius. Cannot calculate perimeter for negative radius."
+        return 2 * math.pi * self.radius
 
 class Rectangle(Shape):
     def __init__(self, width, height):
@@ -38,5 +35,8 @@ class Rectangle(Shape):
         return 2 * (self.width + self.height)
 
 def shape_info(shape):
-    print("Area: {}".format(shape.area()))
-    print("Perimeter: {}".format(shape.perimeter()))
+    if isinstance(shape, Shape):
+        print("Area:", shape.area())
+        print("Perimeter:", shape.perimeter())
+    else:
+        print("Error: Object is not a valid shape.")
