@@ -21,7 +21,10 @@ class Circle(Shape):
         return math.pi * self.radius ** 2
 
     def perimeter(self):
-        return 2 * math.pi * self.radius
+        if self.radius >= 0:
+            return 2 * math.pi * self.radius
+        else:
+            return "Invalid radius, perimeter can be negative."
 
 class Rectangle(Shape):
     def __init__(self, width, height):
