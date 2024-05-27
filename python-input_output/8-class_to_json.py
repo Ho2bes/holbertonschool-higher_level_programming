@@ -12,4 +12,3 @@ def class_to_json(obj):
         dico = obj.__dict__.copy()
 
     return dico
-
