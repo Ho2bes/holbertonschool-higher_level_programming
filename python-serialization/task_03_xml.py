@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Serializing Deserializing with XML"""
+"""Serializing and Deserializing with XML"""
 
 import xml.etree.ElementTree as ET
 import task_03_xml as xml_serialize
 
 
 def serialize_to_xml(dictionary, filename):
-    """Serializes Python dictionary to XML file."""
+    """Serializes a Python dictionary to an XML file."""
 
     root = ET.Element("data")
 
@@ -23,10 +23,11 @@ def serialize_to_xml(dictionary, filename):
     tree = ET.ElementTree(root)
     tree.write(filename)
 
-    def deserialize_from_xml(filename):
-        """Deserializes XML file to Python dictionary"""
-        tree = ET.parse(filename)
-        root = tree.getroot()
+
+def deserialize_from_xml(filename):
+    """Deserializes an XML file to a Python dictionary"""
+    tree = ET.parse(filename)
+    root = tree.getroot()
 
     def parse_tree(element):
         d = {}
@@ -36,6 +37,5 @@ def serialize_to_xml(dictionary, filename):
             else:
                 d[child.tag] = child.text
         return d
-
 
     return parse_tree(root)
