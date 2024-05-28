@@ -3,17 +3,21 @@
 
 
 import sys
-from importlib import import_module
+save_to_json_file = __import__("5-save_to_json_file").save_to_json_file
+load_from_json_file = __import__("6-load_from_json_file").load_from_json_file
 
-save_to_json_file = import_module('5-save_to_json_file').save_to_json_file
-load_from_json_file = import_module('6-load_from_json_file').load_from_json_file
 
-try:
-    json_list = load_from_json_file('add_item.json')
-except FileNotFoundError:
-    json_list = []
+def add_arguments_to_list(filename, *args):
+    try:
+        existing_list = load_from_json_file(filename)
+    except FileNotFoundError:
+        existing_list = []
 
-for i in range(1, len(sys.argv)):
-    json_list.append(sys.argv[i])
+    new_list = existing_list + list(args)
+    save_to_json_file(new_list, filename)
 
-save_to_json_file(json_list, "add_item.json")
+
+if __name__ == "__main__":
+    filename = "add_item.json"
+    arguments = sys.argv[1:]
+    add_arguments_to_list(filename, *arguments)
