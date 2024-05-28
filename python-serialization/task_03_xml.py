@@ -22,3 +22,20 @@ def serialize_to_xml(dictionary, filename):
     build_tree(dictionary, root)
     tree = ET.ElementTree(root)
     tree.write(filename)
+
+    def deserialize_from_xml(filename):
+        """Deserializes XML file to Python dictionary"""
+        tree = ET.parse(filename)
+        root = tree.getroot()
+
+    def parse_tree(element):
+        d = {}
+        for child in element:
+            if len(child):
+                d[child.tag] = parse_tree(child)
+            else:
+                d[child.tag] = child.text
+        return d
+
+
+    return parse_tree(root)
