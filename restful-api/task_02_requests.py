@@ -7,22 +7,27 @@ import csv
 
 
 def fetch_posts_and_titles():
-    response = requests.get('https://jsonplaceholder.typicode.com/posts')
-    print("Status Code:", response.status_code)
+    try:
+        response = requests.get('https://jsonplaceholder.typicode.com/posts')
+        print("Status Code:", response.status_code)
 
-    if response.status_code == 200:
-        posts = response.json()
+        if response.status_code == 200:
+            posts = response.json()
 
-        with open('posts.csv', 'w', newline='') as csvfile:
-            fieldnames = ['id', 'title', 'body']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            with open('posts.csv', 'w', newline='') as csvfile:
+                fieldnames = ['id', 'title', 'body']
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-            writer.writeheader()
+                writer.writeheader()
 
-            for post in posts:
-                writer.writerow({
-                    'id': post['id'],
-                    'title': post['title'],
-                    'body': post['body']
-                    })
-                print(post['title'])
+                for post in posts:
+                    writer.writerow({
+                        'id': post['id'],
+                        'title': post['title'],
+                        'body': post['body']
+                        })
+                    print(post['title'])
+    except Exception as e:
+        print("An error occurred:", e)
+    finally:
+        csvfile.close()
