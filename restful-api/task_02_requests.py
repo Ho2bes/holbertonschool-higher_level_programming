@@ -6,28 +6,23 @@ import requests
 import csv
 
 
-def fetch_posts_and_titles():
-    try:
-        response = requests.get('https://jsonplaceholder.typicode.com/posts')
-        print("Status Code:", response.status_code)
+def fetch_and_print_posts():
+    response = requests.get('https://jsonplaceholder.typicode.com/posts')
+    print(f"Status Code: {response.status_code}")
 
-        if response.status_code == 200:
-            posts = response.json()
+    if response.status_code == 200:
+        posts = response.json()
+        for post in posts:
+            print(post['title'])
 
-            with open('posts.csv', 'w', newline='') as csvfile:
-                fieldnames = ['id', 'title', 'body']
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+def fetch_and_save_posts():
+    response = requests.get('https://jsonplaceholder.typicode.com/posts')
+    if response.status_code == 200:
+        posts = response.json()
+        keys = ['id', 'title', 'body']
 
-                writer.writeheader()
-
-                for post in posts:
-                    writer.writerow({
-                        'id': post['id'],
-                        'title': post['title'],
-                        'body': post['body']
-                        })
-                    print(post['title'])
-    except Exception as e:
-        print("An error occurred:", e)
-    finally:
-        csvfile.close()
+        with open('posts.csv', 'w', newline='') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=keys)
+            writer.writeheader()
+            for post in posts:
+                writer.writerow(post)
