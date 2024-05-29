@@ -5,6 +5,7 @@
 import requests
 import csv
 
+
 def fetch_posts_and_titles():
     response = requests.get('https://jsonplaceholder.typicode.com/posts')
     print("Status Code:", response.status_code)
@@ -19,5 +20,9 @@ def fetch_posts_and_titles():
             writer.writeheader()
 
             for post in posts:
-                writer.writerow({'id': post['id'], 'title': post['title'], 'body': post['body']})
+                writer.writerow({
+                    'id': post['id'],
+                    'title': post['title'],
+                    'body': post['body']
+                    })
                 print(post['title'])
