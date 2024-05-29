@@ -15,6 +15,7 @@ def fetch_and_print_posts():
         for post in posts:
             print(post['title'])
 
+
 def fetch_and_save_posts():
     response = requests.get('https://jsonplaceholder.typicode.com/posts')
     if response.status_code == 200:
