@@ -58,5 +58,6 @@ def run(server_class=HTTPServer, handler_class=SimpleHandler, port=8000):
     print(f"Starting HTTP server on port {port}")
     httpd.serve_forever()
 
+
 if __name__ == "__main__":
     run()
