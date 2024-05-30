@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Develop a Simple API using Python with Flask"""
 
+
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -11,17 +12,21 @@ users = {
     "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}
 }
 
+
 @app.route('/')
 def home():
     return "Bienvenue sur l'API Flask !"
+
 
 @app.route('/data')
 def get_usernames():
     return jsonify(list(users.keys()))
 
+
 @app.route('/status')
 def status():
     return "OK"
+
 
 @app.route('/users/<username>')
 def get_user(username):
@@ -30,6 +35,7 @@ def get_user(username):
         return jsonify(user)
     else:
         return jsonify({"error": "Utilisateur non trouvé"}), 404
+
 
 @app.route('/add_user/', methods=['POST'])
 def add_user():
@@ -46,6 +52,7 @@ def add_user():
     }
     users[username] = user
     return jsonify({"message": "Utilisateur ajouté", "user": user})
+
 
 if __name__ == "__main__":
     app.run()
