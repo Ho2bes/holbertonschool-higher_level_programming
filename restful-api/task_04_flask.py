@@ -1,54 +1,51 @@
 #!/usr/bin/python3
+"""Develop a Simple API using Python with Flask"""
 
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-# Sample users stored in memory
+"""Stockage des données en mémoire"""
 users = {
-    "jane": {"name": "Jane", "age": 28, "city": "Los Angeles"}
+    "jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"},
+    "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}
 }
 
-# Root endpoint
-@app.route("/")
+@app.route('/')
 def home():
-    return "Welcome to the Flask API!"
+    return "Bienvenue sur l'API Flask !"
 
-# Serving JSON data of all users
-@app.route("/data")
-def get_data():
+@app.route('/data')
+def get_usernames():
     return jsonify(list(users.keys()))
 
-# Status endpoint
-@app.route("/status")
-def get_status():
+@app.route('/status')
+def status():
     return "OK"
 
-# Get user by username
-@app.route("/users/<username>")
+@app.route('/users/<username>')
 def get_user(username):
-    if username in users:
-        return jsonify(users[username])
+    user = users.get(username)
+    if user:
+        return jsonify(user)
     else:
-        return "User not found", 404
+        return jsonify({"error": "Utilisateur non trouvé"}), 404
 
-# Add user endpoint
-@app.route("/add_user", methods=["POST"])
+@app.route('/add_user/', methods=['POST'])
 def add_user():
-    data = request.json
-    if "username" in data:
-        username = data["username"]
-        if username not in users:
-            users[username] = {
-                "name": data.get("name", ""),
-                "age": data.get("age", ""),
-                "city": data.get("city", "")
-            }
-            return jsonify({"message": "User added successfully", "user": users[username]}), 201
-        else:
-            return "User already exists", 400
-    else:
-        return "Username not provided", 400
+    data = request.get_json()
+    username = data.get('username')
+    if username in users:
+        return jsonify({"error": "L'utilisateur existe déjà"}), 400
+
+    user = {
+        "username": username,
+        "name": data.get('name'),
+        "age": data.get('age'),
+        "city": data.get('city')
+    }
+    users[username] = user
+    return jsonify({"message": "Utilisateur ajouté", "user": user})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
