@@ -1,3 +1,4 @@
+-- Use the tv_shows table to find the titles of all TV shows that are in the 'Comedy' genre. Order the results by the title of the TV show.
 SELECT tv_shows.title
 FROM tv_shows
 JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
