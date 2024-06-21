@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """Connect to MySQL DB, fetch, and display states sorted by id."""
 
