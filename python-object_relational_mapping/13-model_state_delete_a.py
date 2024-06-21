@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""script to delete * State with a name with 'a' of the dtb hbtn_0e_6_usa."""
+"""script delete State with a name the letter 'a' from dtb hbtn_0e_6_usa."""
 
 import sys
 from sqlalchemy import create_engine
@@ -17,5 +17,8 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State).filter(State.name.like(
+    states = session.query(State).filter(State.name.like('%a%')).all()
+    for state in states:
+        session.delete(state)
+    session.commit()
 
