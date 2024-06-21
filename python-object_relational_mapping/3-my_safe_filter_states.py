@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """MySQL safe filter states by name."""
 
