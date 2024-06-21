@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""MySQL script to list cities for a given state name"""
+""" MySQL script to list cities for a given state name """
 
 import MySQLdb
 import sys
