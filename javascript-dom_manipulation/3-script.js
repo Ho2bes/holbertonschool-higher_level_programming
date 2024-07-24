@@ -1,6 +1,6 @@
-var toggleHeader = document.getElementById('toggle_header');
+const toggleHeader = document.getElementById('toggle_header');
 toggleHeader.addEventListener('click', function() {
-    var header = document.querySelector('header');
+    let header = document.querySelector('header');
 
     if (header.classList.contains('red')) {
         header.classList.remove('red');
